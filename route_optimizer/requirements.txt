@@ -1,0 +1,8 @@
+fastapi==0.115.2
+uvicorn==0.32.0
+requests==2.32.3
+networkx==3.4.1
+python-dotenv==1.0.1
+redis==5.1.1
+pydantic==2.7.4  # Ensure Pydantic is included for validation
+aiohttp==3.11.0 # For async HTTP requests

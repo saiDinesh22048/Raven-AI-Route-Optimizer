@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/vars.css">
+  <link rel="stylesheet" href="static/style.css">
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Funnel+Display&display=swap');
+
+    .funnel-display {
+      font-family: "Funnel Display", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    a,
+    button,
+    input,
+    select,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      text-decoration: none;
+      background: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-page {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Video Styling with Dynamic Transformations */
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      transition: transform 0.5s ease-in-out, opacity 0.8s ease-in-out;
+      animation: fadeInEffect 1.5s ease-in-out forwards;
+    }
+
+    /* Scale effect when hovering */
+    .hero-video:hover {
+      transform: translate(-50%, -50%) scale(1.05) rotate(1deg);
+      opacity: 0.9;
+    }
+
+    @keyframes fadeInEffect {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .try-now {
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      backdrop-filter: blur(5px);
+      animation: revealButton 1.5s ease-in-out forwards;
+      animation-delay: 16s;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .try-now:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    @keyframes revealButton {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .try-now2 {
+      display: inline-block;
+      font-size: 1.5rem;
+      padding: 15px 25px;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .try-now2:hover .try-now-2-span,
+    .try-now2:hover .try-now-2-span2 {
+      color: #7216FF;
+    }
+
+    /* Hover animation for text color change */
+    .learn-more2:hover,
+    .contact2:hover,
+    .help2:hover {
+      color: #7216FF;
+      transition: color 0.3s ease-in-out;
+    }
+
+    /* Responsive Design for Viewport 1536 × 864 */
+    @media (max-width: 1536px) {
+      .hero-video {
+        height: 100vh;
+      }
+    }
+
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 1024px) {
+      .hero-video {
+        height: 100vh;
+      }
+    }
+
+    /* Responsive Design for Mobile Screens */
+    @media (max-width: 768px) {
+      .hero-video {
+        height: 100vh;
+      }
+    }
+  </style>
+  <title>Raven</title>
+</head>
+
+<body>
+  <div class="hero-page">
+    <video class="hero-video" autoplay muted loop>
+      <source src="static/raven draft 2.mp4" type="video/mp4">
+    </video>
+
+    <a href="http://localhost:3000">
+    <div class="try-now">
+      <div class="rectangle-1"></div>
+      <div class="try-now2">
+        <span>
+          <span class="try-now-2-span" style="font-family: 'Funnel Display', sans-serif">TRY NOW</span>
+          <span class="try-now-2-span2">↗</span>
+        </span>
+      </div>
+    </div>
+    </a>
+
+    <div class="rectangle-2"></div>
+    <img class="raven-logo-1" src="static/raven-logo-10.svg" />
+
+    <div class="learn-more">
+      <div class="learn-more2" style="font-family: 'Funnel Display', sans-serif">Learn More</div>
+    </div>
+    <div class="contact">
+      <div class="contact2" style="font-family: 'Funnel Display', sans-serif">Contact</div>
+    </div>
+    <div class="help">
+      <div class="help2" style="font-family: 'Funnel Display', sans-serif">Help</div>
+    </div>
+  </div>
+</body>
+
+</html>

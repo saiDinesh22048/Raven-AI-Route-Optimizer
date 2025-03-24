@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f7fa;
+  width: 100vw; /* Ensure full viewport width */
+  overflow: hidden; /* Prevent scrolling issues */
+}
+
+.sidebar {
+  width: 350px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.sidebar h1 {
+  font-size: 24px;
+  color: #7216ff;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar h1::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='200 200 600 600'%3E%3Cpath fill='%23000' d='M797.9,800H680.1c-6,0-11.4-3.3-14.1-8.6l-108-211l-2.6-5.1c-18.9-30.9-52.3-51.5-91-51.5H357.2v265.8 c0,5.8-4.7,10.5-10.5,10.5H233.4c12.4,0,16.5-28.4,16.5-51V482.2l117.2-54.5l22.6-10.5l239.5-0.7c7.7,0,15.4-1.7,22.3-5.1 c19.7-8.6,32.6-28.3,32.6-49.8c0-19.7-10.3-33.5-16.3-39.5c-6.9-6.9-19.7-15.4-38.6-15.4H399.6l-20.9-9.7l-128.7-59.5L212.7,200 l416.5-0.7c44.6,0,85,18,114.1,47.2c29.2,30,47.2,70.4,47.2,115c0,65.2-38.6,121.9-94.4,147.6c-14.6,6.9-30,11.2-46.3,12.9 c0,0,106.3,211.5,116.3,229.8C791.1,802,797.9,800,797.9,800z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-wrapper input:focus {
+  border-color: #7216ff;
+}
+
+.preferences {
+  margin-top: 30px;
+}
+
+.preferences h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.preference-item {
+  margin-bottom: 20px;
+}
+
+.preference-item label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-wrapper input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.slider-wrapper input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7216ff;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.slider-wrapper input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7216ff;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.slider-wrapper span {
+  font-size: 14px;
+  color: #666;
+}
+
+.start-routing {
+  width: 100%;
+  padding: 12px;
+  background-color: #e8f0fe;
+  color: #7216ff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.start-routing:hover {
+  background-color: #d2e3fc;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  height: 100%; /* Explicitly set to fill parent height */
+  width: 100%; /* Explicitly set to fill parent width */
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute; /* Fill the map-container */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Below placeholder when both are present */
+}
+
+.map-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f7fa;
+  color: #666;
+  z-index: 2; /* Above map when visible */
+}
+
+.map-placeholder .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.map-placeholder p {
+  font-size: 16px;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.map-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f7fa;
+  color: #666;
+  z-index: 2;
+}
+
+.map-notification {
+  position: absolute;
+  top: 15px; /* Slightly adjusted for larger size */
+  left: 15px;
+  padding: 15px 30px; /* Increased padding for larger size */
+  background-color: #7216ff; /* Default fallback color */
+  color: white;
+  border-radius: 10px; /* Slightly larger radius */
+  font-size: 18px; /* Increased font size */
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Slightly larger shadow */
+}
+
+.map-notification.calculating {
+  background-color: #ffeb3b; /* Yellow for "Calculating the best route" */
+  color: #333; /* Darker text for readability on yellow */
+}
+
+.map-notification.optimal {
+  background-color: #4caf50; /* Green for "New optimal route found" */
+  color: white;
+}
