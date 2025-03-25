@@ -36,8 +36,14 @@ function App() {
   };
 
   const ALT_ROUTE_COLORS = [
-    "#FF00FF", "#00CED1", "#FFA500", "#8A2BE2",
-    "#00FF7F", "#FF4500", "#1E90FF", "#FFD700",
+    "#FF00FF",
+    "#00CED1",
+    "#FFA500",
+    "#8A2BE2",
+    "#00FF7F",
+    "#FF4500",
+    "#1E90FF",
+    "#FFD700",
   ];
 
   const getCoordinatesFromPlace = (place) => {
@@ -52,7 +58,9 @@ function App() {
     const [lat, lng] = location.split(",").map(Number);
     if (!isNaN(lat) && !isNaN(lng)) return L.latLng(lat, lng);
     const placeCoords = getCoordinatesFromPlace(location);
-    return placeCoords ? L.latLng(placeCoords[0], placeCoords[1]) : L.latLng(16.4308, 80.5682);
+    return placeCoords
+      ? L.latLng(placeCoords[0], placeCoords[1])
+      : L.latLng(16.4308, 80.5682);
   };
 
   const resetApp = () => {
@@ -82,9 +90,12 @@ function App() {
 
   useEffect(() => {
     resetApp();
-    axios.get(`${CONFIG.API_BASE_URL}/reset`)
-      .then(response => console.log("Backend reset confirmed:", response.data))
-      .catch(err => console.error("Failed to confirm backend reset:", err));
+    axios
+      .get(`${CONFIG.API_BASE_URL}/reset`)
+      .then((response) =>
+        console.log("Backend reset confirmed:", response.data)
+      )
+      .catch((err) => console.error("Failed to confirm backend reset:", err));
     return () => {
       resetApp();
     };
@@ -102,7 +113,9 @@ function App() {
         iconUrl: process.env.PUBLIC_URL + "/nav[1].png",
         iconSize: [50, 50],
       });
-      markerRef.current = L.marker(coords, { icon: taxiIcon }).addTo(mapRef.current);
+      markerRef.current = L.marker(coords, { icon: taxiIcon }).addTo(
+        mapRef.current
+      );
 
       setTimeout(() => {
         if (mapRef.current) {
@@ -121,7 +134,9 @@ function App() {
         preferences,
       });
       setStatus(response.data.status);
-      setCurrentPosition(getCoordinatesFromPlace(source) || [16.4543715, 80.5250379]);
+      setCurrentPosition(
+        getCoordinatesFromPlace(source) || [16.4543715, 80.5250379]
+      );
       setCurrentNodeIndex(0);
     } catch (error) {
       setError(`Error starting optimization: ${error.message}`);
@@ -160,7 +175,10 @@ function App() {
 
         if (response.data.status === "completed" && !isAnimating) {
           console.log("Showing final route");
-          showFinalRoute(response.data.final_route, response.data.alternative_routes);
+          showFinalRoute(
+            response.data.final_route,
+            response.data.alternative_routes
+          );
         }
       } catch (error) {
         if (isMounted) setError(`Error polling status: ${error.message}`);
@@ -173,7 +191,13 @@ function App() {
       isMounted = false;
       clearInterval(intervalId);
     };
-  }, [routeData.status, routeData.final_route.length, error, isAnimating, currentNodeIndex]);
+  }, [
+    routeData.status,
+    routeData.final_route.length,
+    error,
+    isAnimating,
+    currentNodeIndex,
+  ]);
 
   const updateRoute = async (startNode, nextNode, fullRoute, altRoutes) => {
     const startLatLng = getCoordinates(startNode);
@@ -225,7 +249,9 @@ function App() {
           { lat: nextLatLng.lat, lng: nextLatLng.lng },
         ];
         console.log("Route coordinates:", routeCoordinates);
-        animateMarker(markerRef.current, routeCoordinates, nextLatLng).then(resolve);
+        animateMarker(markerRef.current, routeCoordinates, nextLatLng).then(
+          resolve
+        );
       });
 
       newRouteControl.on("routingerror", (e) => {
@@ -288,7 +314,8 @@ function App() {
           setCurrentPosition(newPosition);
           console.log("Marker moved to:", newPosition);
 
-          const distance = L.latLng(newPosition).distanceTo(targetLatLng) / 1000;
+          const distance =
+            L.latLng(newPosition).distanceTo(targetLatLng) / 1000;
           console.log(`Distance to ${targetLatLng}: ${distance} km`);
 
           if (distance < CONFIG.PROXIMITY_THRESHOLD) {
@@ -302,7 +329,10 @@ function App() {
                 node: targetLatLng.toString(),
               })
               .then((response) => {
-                console.log("Marker-close signal sent successfully:", response.data);
+                console.log(
+                  "Marker-close signal sent successfully:",
+                  response.data
+                );
                 resolve();
               })
               .catch((err) => {
@@ -326,7 +356,9 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     resetApp();
-    const sourceCoords = getCoordinatesFromPlace(source) || [16.4543715, 80.5250379];
+    const sourceCoords = getCoordinatesFromPlace(source) || [
+      16.4543715, 80.5250379,
+    ];
     initializeMap(sourceCoords);
     setCurrentPosition(sourceCoords);
     startOptimization();

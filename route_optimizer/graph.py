@@ -19,7 +19,7 @@ class RouteGraph:
         self.weather = WeatherAPIClient()
         self.elevation = GoogleElevationClient()
         self.heuristic = Heuristic()
-        self.api_key = "AIzaSyBvMuJWIj6jEaIUgHoNdGZHZkkHEWvE9QI"  # Move to config/env in production
+        self.api_key = "********************"  # Move to config/env in production
         self.current_route = None
         self.step_index = 0
         self.MIN_DISTANCE_THRESHOLD = 0.25  # 500 meters in kilometers
