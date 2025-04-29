@@ -39,6 +39,9 @@ Raven Route Optimizer is a web-based application designed to **optimize routes f
 - **Rendering routes smoothly** on a Leaflet map with real-time updates and alternative route options.
 - **Displaying detailed metrics** (distance, duration, AQI, weather, elevation gain) in a clear and user-friendly route info panel.
 - **Ensuring responsiveness** of the map interface across different devices.
+##  Home Page
+![image](https://github.com/user-attachments/assets/4c198f20-8e22-4d08-b71b-3cf3972360bd)
+
 
 ## 🏗️ Project Architecture
 
